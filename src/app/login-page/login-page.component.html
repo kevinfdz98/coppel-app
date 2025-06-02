@@ -7,7 +7,7 @@
 <ion-content class="ion-padding">
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <ion-item>
-      <ion-input formControlName="email" label="Email" labelPlacement="floating" ></ion-input>
+      <ion-input formControlName="email" label="Número de Asociado" labelPlacement="floating" ></ion-input>
     </ion-item>
     <ion-note color="danger" *ngIf="email?.invalid && email?.touched">
       Please enter a valid email.
