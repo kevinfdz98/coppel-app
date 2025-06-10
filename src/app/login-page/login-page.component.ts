@@ -20,16 +20,19 @@ export class LoginPage  implements OnInit {
   ) { }
 
     loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required]],
     password: ['', Validators.required],
   });
 
   ngOnInit() {
     try {
-      this.db.users.toArray().then(users => {
-        if (users.length === 0) {
+      this.db.users.toArray().then( async users => {
+        debugger;
+        if (users.length !== 0) {
+          await this.db.users.clear();
           // Pre-populate with a test user
-          this.db.addUser({ email: 'test@example.com', password: '123456' });
+          this.db.addUser({ email: '10022', password: '123456', name: 'Test', lastName: 'User' });
+          this.db.addUser({ email: '10023', password: 'password', name: 'Second', lastName: 'User' });
         }
       });
     } catch (error) {
@@ -47,12 +50,10 @@ export class LoginPage  implements OnInit {
 
   async onLogin() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      await this.db.getUserByEmail(email ? email: '' ).then( user => {
-        console.log('User found:', user);
-      })
-      debugger;
-      if (email === 'test@example.com' && password === '123456') {
+      let { email, password } = this.loginForm.value;
+      email = email?.toString().trim();
+      await this.db.getUserByEmail(email ? email: '' ).then( async user => {
+        if (email === user?.email && password === user?.password) {
         this.navCtrl.navigateForward('/home');
       } else {
         const toast = await this.toastController.create({
@@ -62,6 +63,7 @@ export class LoginPage  implements OnInit {
         });
         await toast.present();
       }
+      })
     }
   }
 }

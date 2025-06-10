@@ -16,6 +16,16 @@ export const routes: Routes = [
       import('./view-message/view-message.page').then((m) => m.ViewMessagePage),
   },
   {
+    path: 'map',
+    loadComponent: () =>
+      import('./map/map.component').then((m) => m.MapComponent),
+  },
+  {
+    path: 'users',
+    loadComponent: () =>
+      import('./users/users.component').then((m) => m.UsersComponent),
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',

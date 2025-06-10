@@ -1,27 +1,23 @@
 
-import { Component, inject } from '@angular/core';
-import { RefresherCustomEvent, IonHeader, IonToolbar, IonTitle, IonContent, IonRefresher, IonRefresherContent, IonList } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { MessageComponent } from '../message/message.component';
-
-import { DataService, Message } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonRefresher, IonRefresherContent, IonList, MessageComponent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonList, MessageComponent, IonButton, IonIcon],
 })
 export class HomePage {
-  private data = inject(DataService);
-  constructor() {}
+  constructor( private router: Router ) {}
 
-  refresh(ev: any) {
-    setTimeout(() => {
-      (ev as RefresherCustomEvent).detail.complete();
-    }, 3000);
+  navigateToMap(){
+    this.router.navigate(['/map']);
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  navigateToUsers() {
+    this.router.navigate(['/users']);
   }
 }

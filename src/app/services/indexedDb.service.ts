@@ -4,7 +4,11 @@ import { Injectable } from '@angular/core';
 export interface User {
   id?: number;
   email: string;
+  name: string;
+  lastName: string;
   password: string;
+  deliveryRoute?: string;
+  pickupRoute?: string;  
 }
 
 @Injectable({ providedIn: 'root' })
@@ -14,7 +18,7 @@ export class IndexedDbService extends Dexie {
   constructor() {
     super('CoppelDB');
     this.version(1).stores({
-      users: '++id, email, password, workAddress',
+      users: '++id, email, password, name, lastName, deliveryRoute, pickupRoute' // Define the schema,
     });
   }
 
@@ -24,5 +28,16 @@ export class IndexedDbService extends Dexie {
 
   getUserByEmail(email: string) {
     return this.users.where('email').equals(email).first();
+  }
+
+  getAllUsers() {
+    return this.users.toArray();
+  }
+
+  loadRouteInUser(user: string, routeData: string) {
+    return this.users.where('email').equals(user).modify({
+      deliveryRoute: routeData,
+    });
+
   }
 }
