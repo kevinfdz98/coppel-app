@@ -127,7 +127,7 @@ export class MapComponent  implements OnInit, AfterViewInit {
       this.destinationMarker = null;
     }
     this.map.setCenter(this.currentLocation);
-    this.map.setZoom(14);
+    this.map.setZoom(12);
   }
 
   async saveRoute() {
