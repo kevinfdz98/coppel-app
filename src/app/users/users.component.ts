@@ -37,6 +37,7 @@ export class UsersComponent  implements OnInit {
   }
 
  selectUser(user: string) {
+  debugger;
     if (this.routeData) {
       this.db.loadRouteInUser(user, this.routeData).then(async (response) => {
          const toast = await this.toastController.create({
@@ -51,7 +52,9 @@ export class UsersComponent  implements OnInit {
         console.error('Error loading route in user:', error);
       });
     } else {
-      console.warn('No route data available to load in user.');
-    }
+      this.db.getUserByEmail(user).then(async (userData) => {
+      console.log('User data:', userData);
+    })
   }
+ }
 }
