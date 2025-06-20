@@ -33,6 +33,8 @@ export class LoginPage  implements OnInit {
           // Pre-populate with a test user
           this.db.addUser({ email: '10022', password: '123456', name: 'Test', lastName: 'User' });
           this.db.addUser({ email: '10023', password: 'password', name: 'Second', lastName: 'User' });
+          this.db.addUser({ email: '10025', password: 'password', name: 'Third', lastName: 'User' })
+          this.db.addUser({ email: '10026', password: 'password', name: 'Fourth', lastName: 'User' })
         }
       });
     } catch (error) {

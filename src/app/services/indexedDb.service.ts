@@ -8,7 +8,8 @@ export interface User {
   lastName: string;
   password: string;
   deliveryRoute?: string;
-  pickupRoute?: string;  
+  pickupRoute?: string;
+  onSite?: boolean;
 }
 
 @Injectable({ providedIn: 'root' })
