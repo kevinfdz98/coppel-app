@@ -6,7 +6,7 @@
 <ion-content>
   <ion-list>
     @for (user of users; track user.id) {
-        <ion-item detail="false" (click)="selectUser(user.email)">
+        <ion-item detail="false" (click)="selectUser(user.email, user)">
       <ion-label class="ion-text-wrap">
         <h2>{{ user.name + ' ' + user.lastName }}</h2>
         <p>{{ 'Numero de asociado: ' + user.email }}</p>

@@ -3,6 +3,7 @@ import { IonContent, IonHeader, IonToolbar, IonTitle, IonSearchbar, IonButton } 
 import { Geolocation } from '@capacitor/geolocation';
 import { ToastController, NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
 declare const google: any;
 
@@ -21,13 +22,22 @@ export class MapComponent  implements OnInit, AfterViewInit {
   directionsRenderer: any;
   currentLocation: any;
   destinationMarker: any;
+  public navOption: string = '';
 
   constructor(
     private toastController: ToastController,
     private navCtrl: NavController,
+    private router: Router
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+     const nav = this.router.getCurrentNavigation();
+    if (nav?.extras?.state) {
+      console.log('Navigation extras state:', nav.extras.state);
+      this.navOption = nav.extras.state['option'];
+    }
+  }
+  
 
    async ngAfterViewInit() {
     await this.loadMap();
@@ -150,7 +160,8 @@ export class MapComponent  implements OnInit, AfterViewInit {
   };
   const navigationExtras: NavigationExtras = {
     state: {
-      routeData: JSON.stringify(routeData)
+      routeData: JSON.stringify(routeData),
+      option: this.navOption // Pass the navigation option
     }
   };
   this.navCtrl.navigateForward('/users', navigationExtras);

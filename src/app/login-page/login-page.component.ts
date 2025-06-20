@@ -27,14 +27,13 @@ export class LoginPage  implements OnInit {
   ngOnInit() {
     try {
       this.db.users.toArray().then( async users => {
-        debugger;
         if (users.length !== 0) {
           await this.db.users.clear();
           // Pre-populate with a test user
-          this.db.addUser({ email: '10022', password: '123456', name: 'Test', lastName: 'User' });
-          this.db.addUser({ email: '10023', password: 'password', name: 'Second', lastName: 'User' });
-          this.db.addUser({ email: '10025', password: 'password', name: 'Third', lastName: 'User' })
-          this.db.addUser({ email: '10026', password: 'password', name: 'Fourth', lastName: 'User' })
+          this.db.addUser({ email: '10022', password: '123456', name: 'Cristopher', lastName: 'Bautista' });
+          this.db.addUser({ email: '10023', password: 'password', name: 'Juan', lastName: 'Perez' });
+          this.db.addUser({ email: '10025', password: 'password', name: 'Roberto', lastName: 'Pulido' })
+          this.db.addUser({ email: '10026', password: 'password', name: 'Antonio', lastName: 'Guzman' })
         }
       });
     } catch (error) {
@@ -67,5 +66,9 @@ export class LoginPage  implements OnInit {
       }
       })
     }
+  }
+
+  goToRegister() {
+    this.navCtrl.navigateForward('/home');
   }
 }

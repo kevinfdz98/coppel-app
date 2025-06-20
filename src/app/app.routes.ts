@@ -25,6 +25,16 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./users/users.component').then((m) => m.UsersComponent),
   },
+   {
+    path: 'load-users',
+    loadComponent: () =>
+      import('./load-users/load-users.component').then((m) => m.LoadUsersComponent),
+  },
+  {
+    path: 'nav-map',
+    loadComponent: () =>
+      import('./nav-map/nav-map.component').then((m) => m.NavMapComponent),
+  },
   {
     path: '',
     redirectTo: 'login',

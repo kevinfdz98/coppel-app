@@ -13,11 +13,19 @@ import { Router } from '@angular/router';
 export class HomePage {
   constructor( private router: Router ) {}
 
-  navigateToMap(){
-    this.router.navigate(['/map']);
+  navigateToMap(option: string) {
+    this.router.navigate(['/map'], {
+      state: { option: option }
+    });
   }
 
-  navigateToUsers() {
-    this.router.navigate(['/users']);
+  navigateToUsers(option: string) {
+    this.router.navigate(['/load-users'], {
+      state: { option: option }
+    });
+  }
+
+  closeSession() {
+    this.router.navigate(['/login']);
   }
 }

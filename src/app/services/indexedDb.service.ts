@@ -35,10 +35,29 @@ export class IndexedDbService extends Dexie {
     return this.users.toArray();
   }
 
-  loadRouteInUser(user: string, routeData: string) {
-    return this.users.where('email').equals(user).modify({
+  loadRouteInUser(user: string, routeData: string, option: string) {
+    if (option === 'pickup') {
+      return this.users.where('email').equals(user).modify({
+        pickupRoute: routeData,
+      });
+    } else {
+       return this.users.where('email').equals(user).modify({
       deliveryRoute: routeData,
     });
+    }
 
+  }
+
+  userOnSite(email: string, onSite: boolean) {
+    return this.users.where('email').equals(email).modify({
+      onSite: onSite,
+    });
+  }
+
+  removeDeliveryRoute(email: string) {
+    return this.users.where('email').equals(email).modify({
+      deliveryRoute: undefined,
+      pickupRoute: undefined,
+    });
   }
 }

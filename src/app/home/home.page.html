@@ -16,16 +16,19 @@
   </ion-header>
 
   <ion-list class="main-actions">
-    <ion-button expand="block" fill="solid" (click)="navigateToMap()">
-      Cargar Supervisor
+    <ion-button expand="block" fill="solid" (click)="navigateToMap('delivery')">
+      Cargar Entrega
     </ion-button>
-    <ion-button expand="block" fill="solid" (click)="navigateToUsers()">
+    <ion-button expand="block" fill="solid" (click)="navigateToUsers('delivery')">
       Empezar Entrega
     </ion-button>
-     <ion-button expand="block" fill="solid" routerLink="/load-supervisor">
+     <ion-button expand="block" fill="solid" (click)="navigateToMap('pickup')">
       Cargar Recoleccion
     </ion-button>
-    <ion-button expand="block" fill="solid" routerLink="/load-supervisor">
+    <ion-button expand="block" fill="solid" (click)="navigateToUsers('pickup')">
+      Empezar Recoleccion
+    </ion-button>
+    <ion-button expand="block" fill="solid" (click)="closeSession()">
       Finalizar dia
     </ion-button>
   </ion-list>

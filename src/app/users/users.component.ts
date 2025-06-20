@@ -14,6 +14,8 @@ import { ToastController, NavController } from '@ionic/angular';
 export class UsersComponent  implements OnInit {
   public routeData: string = '';
   public users: any[] = [];
+  public navOption: string = '';
+
   constructor(
   private router: Router, 
   private db: IndexedDbService,
@@ -23,12 +25,20 @@ export class UsersComponent  implements OnInit {
   ngOnInit() {
      const nav = this.router.getCurrentNavigation();
     if (nav?.extras?.state) {
+      console.log('Navigation extras state:', nav.extras.state);
       this.routeData = nav.extras.state['routeData'];
+      this.navOption = nav.extras.state['option'] || '';
     }
     try {
       this.db.getAllUsers().then(users => {
         if (users.length !== 0) {
-          this.users = users;
+          if(this.navOption === 'pickup') {
+          this.users = users.filter(user => !user.pickupRoute);
+          console.log('Filtered users for pickup:', this.users);
+        } else {
+          this.users = users.filter(user => !user.deliveryRoute );
+          console.log('Filtered users for delivery:', this.users);
+        }
         }
       })
     } catch (error) {
@@ -37,9 +47,8 @@ export class UsersComponent  implements OnInit {
   }
 
  selectUser(user: string) {
-  debugger;
     if (this.routeData) {
-      this.db.loadRouteInUser(user, this.routeData).then(async (response) => {
+      this.db.loadRouteInUser(user, this.routeData, this.navOption).then(async (response) => {
          const toast = await this.toastController.create({
           message: 'Ruta cargada correctamente en el usuario.',
           position: 'top',

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Iniciar Sesion</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -22,7 +22,10 @@
     </ion-note>
 
     <ion-button expand="full" type="submit" [disabled]="loginForm.invalid">
-      Login
+      Iniciar Sesion
     </ion-button>
   </form>
+   <ion-button expand="full" fill="clear" (click)="goToRegister()">
+      Registrarse
+    </ion-button>
 </ion-content>
