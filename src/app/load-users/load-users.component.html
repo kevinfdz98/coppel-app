@@ -6,7 +6,10 @@
 <ion-content>
   <ion-list>
     @for (user of users; track user.id) {
-        <ion-item detail="false" (click)="selectUser(user.email, user)">
+      <ion-item button (click)="selectUser(user.email, user)">
+      <ion-avatar slot="start">
+        <img src="{{ user.avatar || 'assets/icon/avatar.png' }}" alt="Avatar de {{ user.name }}">
+      </ion-avatar>
       <ion-label class="ion-text-wrap">
         <h2>{{ user.name + ' ' + user.lastName }}</h2>
         <p>{{ 'Numero de asociado: ' + user.email }}</p>

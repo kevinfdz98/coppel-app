@@ -1,83 +1,64 @@
 import { Injectable } from '@angular/core';
 
-export interface Message {
-  fromName: string;
-  subject: string;
-  date: string;
-  id: number;
-  read: boolean;
+export interface User {
+  id?: number;
+  email: string;
+  name: string;
+  lastName: string;
+  password: string;
+  deliveryRoute?: string;
+  pickupRoute?: string;
+  onSite?: boolean;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  public messages: Message[] = [
-    {
-      fromName: 'Matt Chorsey',
-      subject: 'New event: Trip to Vegas',
-      date: '9:32 AM',
-      id: 0,
-      read: false
-    },
-    {
-      fromName: 'Lauren Ruthford',
-      subject: 'Long time no chat',
-      date: '6:12 AM',
-      id: 1,
-      read: false
-    },
-    {
-      fromName: 'Jordan Firth',
-      subject: 'Report Results',
-      date: '4:55 AM',
-      id: 2,
-      read: false
-    },
-    {
-      fromName: 'Bill Thomas',
-      subject: 'The situation',
-      date: 'Yesterday',
-      id: 3,
-      read: false
-    },
-    {
-      fromName: 'Joanne Pollan',
-      subject: 'Updated invitation: Swim lessons',
-      date: 'Yesterday',
-      id: 4,
-      read: false
-    },
-    {
-      fromName: 'Andrea Cornerston',
-      subject: 'Last minute ask',
-      date: 'Yesterday',
-      id: 5,
-      read: false
-    },
-    {
-      fromName: 'Moe Chamont',
-      subject: 'Family Calendar - Version 1',
-      date: 'Last Week',
-      id: 6,
-      read: false
-    },
-    {
-      fromName: 'Kelly Richardson',
-      subject: 'Placeholder Headhots',
-      date: 'Last Week',
-      id: 7,
-      read: false
-    }
-  ];
 
+  users: User[] = [
+    { email: '10022', password: '123456', name: 'Cristopher', lastName: 'Bautista' },
+    { email: '10023', password: 'password', name: 'Juan', lastName: 'Perez' },
+    { email: '10025', password: 'password', name: 'Roberto', lastName: 'Pulido' },
+    { email: '10026', password: 'password', name: 'Antonio', lastName: 'Guzman' },
+    // Add more users as needed
+    { email: '10027', password: 'password', name: 'Maria', lastName: 'Lopez' },
+    { email: '10028', password: 'password', name: 'Carlos', lastName: 'Martinez' },
+    { email: '10029', password: 'password', name: 'Laura', lastName: 'Gomez' }
+  ]
+  
   constructor() { }
 
-  public getMessages(): Message[] {
-    return this.messages;
+  addUser(user: User) {
+    this.users.push(user);
   }
-
-  public getMessageById(id: number): Message {
-    return this.messages[id];
+  getUserByEmail(email: string): User | undefined {
+    return this.users.find(user => user.email === email);
+  }
+  getAllUsers(): User[] {
+    return this.users;
+  }
+  loadRouteInUser(user: string, routeData: string, option: string) {
+    const foundUser = this.getUserByEmail(user);
+    if (foundUser) {
+      if (option === 'pickup') {
+        foundUser.pickupRoute = routeData;
+      } else {
+        foundUser.deliveryRoute = routeData;
+      }
+    }
+  }
+  userOnSite(email: string, onSite: boolean) {
+    const foundUser = this.getUserByEmail(email);
+    if (foundUser) {
+      foundUser.onSite = onSite;
+    }
+  }
+  removeDeliveryRoute(email: string) {
+    const foundUser = this.getUserByEmail(email);
+    if (foundUser) {
+      foundUser.deliveryRoute = undefined;
+      foundUser.pickupRoute = undefined;
+    }
   }
 }

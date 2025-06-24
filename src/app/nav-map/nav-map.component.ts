@@ -4,6 +4,7 @@ import { IonContent, IonHeader, IonToolbar, IonTitle, IonButton } from '@ionic/a
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { IndexedDbService } from '../services/indexedDb.service';
+import { DataService } from '../services/data.service';
 
 declare const google: any;
 
@@ -28,6 +29,7 @@ export class NavMapComponent implements OnInit, AfterViewInit {
       private router: Router,
       private toastController: ToastController,
       private db: IndexedDbService,
+      private dataService: DataService
   ) { }
 
   ngOnInit() {
@@ -74,17 +76,27 @@ export class NavMapComponent implements OnInit, AfterViewInit {
     });
   }
 
+  goToMaps(){
+    const origin = `${this.currentLocation.lat},${this.currentLocation.lng}`;
+    const destination = `${this.routeData.destination.lat},${this.routeData.destination.lng}`;
+    const url = `google.navigation:q=${destination}&mode=d`;
+    //const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
+    window.open(url, '_system'); // '_system' for Cordova/Ionic, or '_blank' for browser
+  }
+
  async finalizeRoute() {
-  this.db.removeDeliveryRoute(this.userEmail).then(() => {});
-    this.db.userOnSite(this.userEmail, true).then(async () => {
-        const toast = await this.toastController.create({
-          message: 'Ruta finalizada correctamente. Usuario en sitio.',
-          position: 'top',
-          duration: 2000,
-          color: 'success'
-        });
-        await toast.present();
-    })
+  // this.db.removeDeliveryRoute(this.userEmail).then(() => {});
+  //   this.db.userOnSite(this.userEmail, true).then(async () => {
+  //       const toast = await this.toastController.create({
+  //         message: 'Ruta finalizada correctamente. Usuario en sitio.',
+  //         position: 'top',
+  //         duration: 2000,
+  //         color: 'success'
+  //       });
+  //       await toast.present();
+  //   })
+  this.dataService.removeDeliveryRoute(this.userEmail);
+  this.dataService.userOnSite(this.userEmail, true);
     this.router.navigate(['/home'])
   }
 

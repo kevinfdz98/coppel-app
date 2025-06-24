@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { IonList, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonList, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonIcon } from '@ionic/angular/standalone';
 import { IndexedDbService } from '../services/indexedDb.service';
 import { Router } from '@angular/router';
-
+import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-load-users',
   templateUrl: './load-users.component.html',
   styleUrls: ['./load-users.component.scss'],
-  imports: [IonList, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent]
+  imports: [IonList, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar,
+    IonIcon,]
 
 })
 export class LoadUsersComponent  implements OnInit {
@@ -16,6 +17,7 @@ export class LoadUsersComponent  implements OnInit {
 
   constructor(
     private db: IndexedDbService,
+    private dataService: DataService,
     private router: Router
   ) { }
 
@@ -24,7 +26,7 @@ export class LoadUsersComponent  implements OnInit {
     if (nav?.extras?.state) {
       this.navOption = nav.extras.state['option'];
     }
-      this.db.getAllUsers().then(async (users) => {
+      const users = this.dataService.getAllUsers();
         if(this.navOption === 'pickup') {
           this.users = users.filter(user => user.pickupRoute);
           console.log('Filtered users for pickup:', users);
@@ -32,7 +34,6 @@ export class LoadUsersComponent  implements OnInit {
           this.users = users.filter(user => user.deliveryRoute );
           console.log('Filtered users for delivery:', this.users);
         }
-    })
   }
 
   selectUser(email: string, user: any) {

@@ -6,19 +6,19 @@
 
 <ion-content class="ion-padding">
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    <ion-item>
-      <ion-input type="number" formControlName="email" label="Número de Asociado" labelPlacement="floating" ></ion-input>
+    <ion-item inputmode="text">
+      <ion-input formControlName="email" label="Número de Asociado" labelPlacement="floating" ></ion-input>
     </ion-item>
     <ion-note color="danger" *ngIf="email?.invalid && email?.touched">
-      Please enter a valid email.
+      Por favor ingrese un número de asociado válido.
     </ion-note>
 
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
+    <ion-item inputmode="password">
+      <ion-label position="floating">Contraseña</ion-label>
       <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
     <ion-note color="danger" *ngIf="password?.invalid && password?.touched">
-      Password is required.
+     Este campo es obligatorio.
     </ion-note>
 
     <ion-button expand="full" type="submit" [disabled]="loginForm.invalid">
