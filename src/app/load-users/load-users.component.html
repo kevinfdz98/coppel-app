@@ -1,9 +1,15 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Usuarios</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  @if(users.length === 0) {
+    <ion-text class="ion-padding">
+       <ion-img class="empty-image" src="assets/icon/look.png"></ion-img>
+      <p class="empty-text">No hay usuarios disponibles.</p>
+    </ion-text>
+  }
   <ion-list>
     @for (user of users; track user.id) {
       <ion-item button (click)="selectUser(user.email, user)">
@@ -14,6 +20,7 @@
         <h2>{{ user.name + ' ' + user.lastName }}</h2>
         <p>{{ 'Numero de asociado: ' + user.email }}</p>
       </ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
     </ion-item>
     }
   </ion-list>

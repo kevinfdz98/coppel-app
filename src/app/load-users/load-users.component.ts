@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonList, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonIcon } from '@ionic/angular/standalone';
+import { IonImg, IonText, IonList, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonIcon } from '@ionic/angular/standalone';
 import { IndexedDbService } from '../services/indexedDb.service';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
@@ -7,7 +7,7 @@ import { DataService } from '../services/data.service';
   selector: 'app-load-users',
   templateUrl: './load-users.component.html',
   styleUrls: ['./load-users.component.scss'],
-  imports: [IonList, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar,
+  imports: [IonImg, IonText, IonList, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar,
     IonIcon,]
 
 })

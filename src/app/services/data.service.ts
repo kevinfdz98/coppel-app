@@ -9,6 +9,7 @@ export interface User {
   deliveryRoute?: string;
   pickupRoute?: string;
   onSite?: boolean;
+  avatar?: string; // Optional avatar property
 }
 
 @Injectable({
@@ -17,14 +18,15 @@ export interface User {
 export class DataService {
 
   users: User[] = [
-    { email: '10022', password: '123456', name: 'Cristopher', lastName: 'Bautista' },
-    { email: '10023', password: 'password', name: 'Juan', lastName: 'Perez' },
-    { email: '10025', password: 'password', name: 'Roberto', lastName: 'Pulido' },
-    { email: '10026', password: 'password', name: 'Antonio', lastName: 'Guzman' },
+    { email: '10022', password: '123456', name: 'Cristopher', lastName: 'Bautista', avatar: 'assets/icon/user.png' },
+    { email: '10023', password: 'password', name: 'Juan', lastName: 'Perez', avatar: 'assets/icon/user.png' },
+    { email: '10024', password: 'password', name: 'Maria', lastName: 'Garcia', avatar: 'assets/icon/avatar.png' },
+    { email: '10025', password: 'password', name: 'Roberto', lastName: 'Pulido', avatar: 'assets/icon/user.png' },
+    { email: '10026', password: 'password', name: 'Antonio', lastName: 'Guzman', avatar: 'assets/icon/user.png' },
     // Add more users as needed
-    { email: '10027', password: 'password', name: 'Maria', lastName: 'Lopez' },
-    { email: '10028', password: 'password', name: 'Carlos', lastName: 'Martinez' },
-    { email: '10029', password: 'password', name: 'Laura', lastName: 'Gomez' }
+    { email: '10027', password: 'password', name: 'Maria', lastName: 'Lopez', avatar: 'assets/icon/avatar.png' },
+    { email: '10028', password: 'password', name: 'Carlos', lastName: 'Martinez', avatar: 'assets/icon/user.png' },
+    { email: '10029', password: 'password', name: 'Laura', lastName: 'Gomez', avatar: 'assets/icon/avatar.png' }
   ]
   
   constructor() { }

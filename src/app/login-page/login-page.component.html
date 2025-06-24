@@ -1,31 +1,44 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Iniciar Sesion</ion-title>
+  <ion-toolbar color="warning">
+    <ion-title color="primary">Portal Coppel </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    <ion-item inputmode="text">
-      <ion-input formControlName="email" label="Número de Asociado" labelPlacement="floating" ></ion-input>
-    </ion-item>
-    <ion-note color="danger" *ngIf="email?.invalid && email?.touched">
+    <ion-input
+      class="login-input"
+      color="secondary"
+      label="Número de Asociado" 
+      label-placement="floating" 
+      fill="outline"
+      formControlName="email"
+      placeholder="Ingrese unicamente números">
+    </ion-input>
+    <ion-note class="note" *ngIf="email?.invalid && email?.touched">
       Por favor ingrese un número de asociado válido.
     </ion-note>
-
-    <ion-item inputmode="password">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input formControlName="password" type="password"></ion-input>
-    </ion-item>
-    <ion-note color="danger" *ngIf="password?.invalid && password?.touched">
+    <ion-input
+      class="login-input"
+      label="Contraseña" 
+      label-placement="floating"
+      fill="outline" 
+      placeholder="Ingrese su contraseña"
+      formControlName="password" 
+      type="password">
+    </ion-input>
+    <ion-note class="note" *ngIf="password?.invalid && password?.touched">
      Este campo es obligatorio.
     </ion-note>
-
-    <ion-button expand="full" type="submit" [disabled]="loginForm.invalid">
+    <ion-button shape="round" class="action-button" expand="full" type="submit" [disabled]="loginForm.invalid">
       Iniciar Sesion
     </ion-button>
   </form>
-   <ion-button expand="full" fill="clear" (click)="goToRegister()">
-      Registrarse
-    </ion-button>
+    <ion-img
+    class="logo"
+    src="assets/icon/logo.png"
+  ></ion-img>
+  <ion-text class="footer-text">
+    <p>¿Olvidaste tu contraseña? <a href="#">Recuperar</a></p>
+  </ion-text>
 </ion-content>

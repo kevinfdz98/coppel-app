@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { IonContent, IonHeader, IonToolbar, IonTitle, IonSearchbar, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonToolbar, IonTitle, IonSearchbar, IonButton, ToastController } from '@ionic/angular/standalone';
 import { Geolocation } from '@capacitor/geolocation';
-import { ToastController, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { Router } from '@angular/router';
 

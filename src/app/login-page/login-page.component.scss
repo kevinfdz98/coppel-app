@@ -1,8 +1,15 @@
 
 ion-content {
+  --background: #0F92FC;
+ // --background: linear-gradient(135deg, var(--coppel-yellow), var(--coppel-blue));
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--coppel-white);
+}
+
+ion-header, .custom-header {
+  padding-top: env(safe-area-inset-top);
 }
 
 form {
@@ -10,4 +17,36 @@ form {
   max-width: 400px;
   padding: 16px;
   margin-top: 80px;
+  font-size: 18px;
+}
+
+.login-input {
+  //--background: var(--coppel-white);
+  --color: var(--coppel-white);
+  --placeholder-color: var(--coppel-gray);
+  --border-color: var(--coppel-gray);
+  --border-radius: 8px;
+  --highlight-color: var(--coppel-yellow);
+  margin-bottom: 16px;
+}
+
+.note {
+  --color: var(--coppel-yellow);
+  margin-bottom: 12px;
+}
+
+.action-button {
+  --background: var(--coppel-yellow);
+  --color: var(--coppel-blue);
+  --border-radius: 8px; 
+  margin-top: 50px;
+}
+
+.footer-text {
+  color: var(--coppel-gray);
+}
+
+.logo {
+  width: 50%;
+  justify-self: center;
 }

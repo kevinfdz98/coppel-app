@@ -35,3 +35,50 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+.button-primary {
+  background-color: var(--coppel-yellow);
+  color: var(--coppel-blue);
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 12px 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.button-secondary {
+  background-color: var(--coppel-blue);
+  color: var(--coppel-yellow);
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 12px 20px;
+}
+:root {
+  --coppel-yellow: #FFCC00;
+  --coppel-blue: #0033A0;
+  --coppel-white: #FFFFFF;
+  --coppel-black: #000000;
+  --coppel-gray: #F5F5F5;
+}
+
+:host {
+    --coppel-yellow: #FFCC00;
+    --coppel-blue: #0033A0;
+    --coppel-white: #FFFFFF;
+    --coppel-black: #000000;
+    --coppel-gray: #F5F5F5;
+    --ion-color-primary: var(--coppel-blue);
+    --ion-color-secondary: var(--coppel-yellow);
+    --ion-color-tertiary: var(--coppel-gray);
+    --ion-color-success: #28a745;
+    --ion-color-warning: #ffc107;
+    --ion-color-danger: #dc3545;
+    --ion-color-light: var(--coppel-white);
+    --ion-color-dark: var(--coppel-black);
+}
+
+$colors: (
+  primary:    var(--coppel-blue),
+  secondary:  var(--coppel-yellow),
+  light:      var(--coppel-gray),
+  dark:       var(--coppel-black)
+);
